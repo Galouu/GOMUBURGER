@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Localisation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap" rel="stylesheet">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" crossorigin="anonymous">
+
+  <style>
+    body {
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #content {
+      display: flex;
+      flex: 1;
+      position: relative;
+    }
+    #map {
+      width: 70%;
+      height: 100%;
+      position: absolute;
+      left: -100%;
+      transition: left 1s ease;
+    }
+    #map.visible {
+      left: 0;
+    }
+    #sidebar {
+      width: 30%;
+      height: 100%;
+      padding: 20px 38px;
+      background-color: #000000;
+      position: absolute;
+      left: 0;
+      transition: left 1s ease, right 1s ease;
+    }
+    #sidebar.right {
+      left: 70%;
+    }
+    .sidebar-header {
+      font-family: "Roboto", sans-serif;
+      font-weight: 900;
+      font-size: 3.8vw;
+      padding-top: 16vh;
+      color: #fff;
+      line-height: 1;
+      text-align: left;
+      letter-spacing: 0.15rem;
+    }
+    .fa-beat-fade {
+      animation: fa-beat-fade 3s infinite;
+    }
+    .fa-beat-fade-pink {
+      animation: fa-beat-fade-pink 3s infinite;
+    }
+    @keyframes fa-beat-fade-pink {
+      0%, 100% {
+        opacity: 1;
+        color: #E163F2;
+      }
+        50% {
+        opacity: 0.5;
+        color: #E163F2;
+      }
+    }
+    .icon-purple {
+      color: #6623FF !important;
+    }
+
+    .states-container {
+      left: 30%;
+      background-image: url('<%= asset_path('LOCALISATION/sky.webp') %>');
+      background-size: cover;
+      background-position: center;
+      width: 70%;
+      height: 100%;
+      position: relative;
+      padding: 110px 60px 150px;
+      max-width: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: left 1s ease;
+      overflow-y: auto;
+    }
+    .states-container.hidden {
+      left: 100%;
+    }
+    .states-container.move-right {
+      left: 100%;
+    }
+    .states-image {
+      width: 100%;
+      max-width: 300px;
+      padding: 3em;
+      border-radius: 3em;
+      box-shadow: 0 0 10px 8px rgba(102, 35, 255, 0.80);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .states-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 8px 6px rgba(225, 99, 242, 0.80);
+    }
+    .location-container {
+      gap: 5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .location-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .location-wrapper.active .location-text {
+      color: #E163F2CC;
+      text-shadow: 0 0 8px #E163F2CC, 0 0 16px #E163F2CC, 0 0 24px #E163F2CC, 0 0 32px #E163F2CC;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    .location-wrapper:hover .location-text {
+      color: #E163F2CC;
+      text-shadow: 0 0 8px #E163F2CC, 0 0 16px #E163F2CC, 0 0 24px #E163F2CC, 0 0 32px #E163F2CC;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    .location-wrapper .location-text {
+      letter-spacing: 10px;
+      text-decoration: none;
+      padding: 12px 8px;
+      color: white;
+      font-size: 1.6em;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    .square-container {
+      margin-top: 480px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      padding: 5% 5%;
+      display: none;
+      z-index: 10;
+    }
+    .square-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: calc(25% - 30px);
+    }
+    .square {
+      border-radius: 0.6em;
+      width: 100%;
+      padding-bottom: 100%;
+      box-shadow: 0 0 10px 4px rgba(102, 35, 255, 0.80);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .square.animated {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .square:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 4px rgba(225, 99, 242, 0.80);
+    }
+    .square.inactive {
+      opacity: 0.4;
+    }
+    .text {
+      letter-spacing: 0.5px;
+      padding: 0px 10px;
+      color: white;
+      text-align: left;
+      font-size: 1.2rem;
+      border-bottom-left-radius: 2em;
+    }
+    .hidden {
+      display: none;
+    }
+    .location-text {
+      letter-spacing: 0.5px;
+    }
+    .marker-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+    }
+    .marker {
+      background-size: 100%;
+      background-repeat: no-repeat;
+      transition: transform 0.3s ease;
+    }
+    .marker.heartbeat {
+      animation: heartbeat 1s infinite;
+    }
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+    .mapboxgl-popup-content {
+      width: 380px;
+      background: #000;
+      color: white;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      font-family: "Jura", sans-serif;
+    }
+    .popup-content {
+      display: flex;
+      width: 100%;
+    }
+    .popup-content img {
+      border-radius: 4px;
+      width: 50%;
+    }
+    .popup-content .popup-text {
+      width: 50%;
+    }
+    .popup-text{
+      margin-right: 8px;
+    }
+    .popup-content strong {
+      font-size: 0.9em;
+      color: #E163F2;
+    }
+    .popup-content p {
+      margin: 12px 0;
+    }
+    .popup-buttons {
+      align-items: center;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .popup-buttons a {
+      text-decoration: none;
+      color: white;
+      background-color: #E163F2;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      text-align: center;
+      display: inline-block;
+      min-width: 100px;
+    }
+    .popup-buttons a:hover {
+      background-color: #6623FF;
+    }
+    .popup-name strong{
+      color: white !important;
+      font-size: 1.2em;
+      text-align: center;
+    }
+    .popup-name {
+      font-size: 0.95em;
+    }
+    .mapboxgl-popup {
+      opacity: 0;
+      transform: scale(0);
+      transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+    }
+    .mapboxgl-popup.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+      align-self: center;
+      border-top: none;
+      border-bottom-color: #000;
+    }
+    .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+      align-self: center;
+      border-bottom: none;
+      border-top-color: #000;
+    }
+    .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+      align-self: center;
+      border-left: none;
+      border-right-color: #000;
+    }
+    .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+      align-self: center;
+      border-left: none;
+      border-right-color: #000;
+    }
+    .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+      align-self: flex-start;
+      border-bottom: none;
+      border-left: none;
+      border-top-color: #000;
+    }
+    .open-status {
+      color: green;
+      font-weight: bold;
+    }
+    @media (max-width: 1023px) {
+      #sidebar {
+        width: 100%;
+        height: 20%;
+        padding: 10px 20px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        transition: top 1s ease, bottom 1s ease;
+      }
+
+      #sidebar.right {
+        top: 0;
+      }
+
+      .location-container{
+        margin-top: 2em;
+      }
+
+      #map {
+        width: 100%;
+        height: 80%;
+        top: 20%;
+      }
+
+      .states-container {
+        width: 100%;
+        top: 20%;
+        height: 100%;
+        position: initial;
+      }
+
+      .sidebar-header {
+        font-size: 5vw;
+        text-align: center;
+        padding-top: 10px;
+        margin-left: 2em;
+        letter-spacing: 5px;
+      }
+
+      #map-icon, #list-icon {
+        font-size: 2.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="content">
+  <div id='map'></div>
+  <div class="states-container">
+    <div class="location-container">
+      <div class="location-wrapper">
+        <img src="<%= asset_path('LOCALISATION/FR.svg') %>" class="states-image" id="fr-svg"/>
+        <div class="location-text">FRANCE</div>
+      </div>
+      <div class="location-wrapper">
+        <img src="<%= asset_path('LOCALISATION/BL.svg') %>" class="states-image" id="bl-svg"/>
+        <div class="location-text">BELGIQUE</div>
+      </div>
+    </div>
+    <div class="square-container hidden" id="square-container-fr">
+      <% @restaurants_fr.each do |restaurant| %>
+        <div class="square-wrapper">
+          <%= link_to restaurant_show_path(restaurant.name), style: "width: 100%; display: block; text-decoration: none; color: inherit;" do %>
+            <div class="square" style="background-image: url('<%= asset_path("LOCALISATION/RESTAURANT/#{restaurant.image_list}") %>'); position: relative;">
+              <div class="text" style="position: absolute; bottom: 0; right: 0;">
+                <%= restaurant.name %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="square-container hidden" id="square-container-bl">
+      <% @restaurants_bl.each do |restaurant| %>
+        <div class="square-wrapper">
+          <%= link_to restaurant_show_path(restaurant.name), style: "width: 100%; display: block; text-decoration: none; color: inherit;" do %>
+            <div class="square" style="background-image: url('<%= asset_path("LOCALISATION/RESTAURANT/#{restaurant.image_list}") %>'); position: relative;">
+              <div class="text" style="position: absolute; bottom: 0; right: 0;">
+                <%= restaurant.name %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div id="sidebar">
+    <i id="map-icon" class="fa-solid fa-map fa-3x" style="color: #6623FF; cursor: pointer;"></i>
+    <i id="list-icon" class="fa-solid fa-list fa-3x fa-beat-fade" style="color: #E163F2CC; margin-left: 40px; cursor: pointer;"></i>
+    <h2 class="sidebar-header">TROUVEZ VOTRE <span id="gomu" class="fa-beat-fade" style="color: #E163F2CC;">GOMU</span></h2>
+  </div>
+</div>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js" crossorigin="anonymous"></script>
+<script>
+if (typeof activeMarker === 'undefined') {
+  var activeMarker = null;
+}
+function toggleElements(isMap) {
+  const mapElement = document.getElementById('map');
+  const sidebarElement = document.getElementById('sidebar');
+  const statesContainer = document.querySelector('.states-container');
+  const listIcon = document.getElementById('list-icon');
+  const mapIcon = document.getElementById('map-icon');
+  const gomu = document.getElementById('gomu');
+
+  sidebarElement.classList.toggle('right', isMap);
+  mapElement.classList.toggle('visible', isMap);
+  statesContainer.classList.toggle('move-right', isMap);
+  listIcon.classList.toggle('fa-beat-fade', !isMap);
+  listIcon.classList.toggle('icon-purple', isMap);
+  mapIcon.classList.toggle('fa-beat-fade-pink', isMap);
+  gomu.classList.add('fa-beat-fade');
+
+  if (isMap) setTimeout(initializeMap, 500);
+}
+
+document.getElementById('map-icon').addEventListener('click', () => toggleElements(true));
+document.getElementById('list-icon').addEventListener('click', () => toggleElements(false));
+
+document.getElementById('fr-svg').addEventListener('click', function() {
+  toggleDisplay('square-container-fr', 'square-container-bl');
+});
+
+document.getElementById('bl-svg').addEventListener('click', function() {
+  toggleDisplay('square-container-bl', 'square-container-fr');
+});
+
+function toggleDisplay(containerToShowId, containerToHideId) {
+  const containerToShow = document.getElementById(containerToShowId);
+  const containerToHide = document.getElementById(containerToHideId);
+  const isVisible = containerToShow.style.display === 'flex';
+
+  document.querySelectorAll('.square-container').forEach(container => container.style.display = 'none');
+  document.querySelectorAll('.location-wrapper').forEach(wrapper => wrapper.classList.remove('active'));
+
+  if (!isVisible) {
+    containerToShow.style.display = 'flex';
+    if (containerToShowId === 'square-container-fr') {
+      document.querySelector('#fr-svg').parentElement.classList.add('active');
+    } else if (containerToShowId === 'square-container-bl') {
+      document.querySelector('#bl-svg').parentElement.classList.add('active');
+    }
+  }
+
+  animateSquares(containerToShow.querySelectorAll('.square'));
+}
+
+function animateSquares(squares) {
+  squares.forEach((square, index) => {
+    square.classList.remove('animated');
+    setTimeout(() => {
+      square.classList.add('animated');
+    }, index * 100);
+  });
+}
+
+document.querySelectorAll('.square').forEach(square => {
+  square.addEventListener('mouseenter', function() {
+    document.querySelectorAll('.square').forEach(s => {
+      if (s !== this) {
+        s.classList.add('inactive');
+      }
+    });
+  });
+
+  square.addEventListener('mouseleave', function() {
+    document.querySelectorAll('.square').forEach(s => s.classList.remove('inactive'));
+  });
+});
+
+function createMarker(map, name, imageSrc, longitude, latitude, address, phone_number, zip) {
+  const el = document.createElement('div');
+  el.className = 'marker-container';
+
+  const marker = document.createElement('div');
+  marker.className = 'marker';
+  marker.style.backgroundImage = `url('<%= asset_path("LOCALISATION/Pin.svg") %>')`;
+  marker.style.width = '50px';
+  marker.style.height = '50px';
+  marker.style.backgroundSize = 'contain';
+
+  el.appendChild(marker);
+
+  marker.addEventListener('click', function () {
+    if (activeMarker && activeMarker !== marker) {
+      activeMarker.style.backgroundImage = `url('<%= asset_path("LOCALISATION/Pin.svg") %>')`;
+    }
+    marker.style.backgroundImage = `url('<%= asset_path("LOCALISATION/PinClick.svg") %>')`;
+    activeMarker = marker;
+  });
+
+  const popupContent = document.createElement('div');
+  popupContent.className = 'popup-content';
+  popupContent.innerHTML = `
+    <div class="popup-text">
+      <p class="popup-name"><strong>${name}</strong></p>
+      <p><strong>ADRESSE :</strong><br> ${address}</p>
+      <p><strong>HORAIRE :</strong><br><span class="open-status">OUVERT</span> - ferme à 00:00</p>
+      <div class="popup-buttons">
+        <strong><a href="/restaurants/${encodeURIComponent(name)}">COMMANDER</a></strong>
+        <strong><a href="/restaurants/${encodeURIComponent(name)}">S'Y RENDRE</a></strong>
+      </div>
+    </div>
+    <img src="${imageSrc}" alt="${name}"/>
+  `;
+
+  const popup = new mapboxgl.Popup({ offset: 25 })
+    .setDOMContent(popupContent)
+    .on('open', () => {
+      setTimeout(() => {
+        const popupElement = document.querySelector('.mapboxgl-popup');
+        if (popupElement) {
+          popupElement.classList.add('show');
+        }
+      }, 10);
+    })
+    .on('close', () => {
+      const popupElement = document.querySelector('.mapboxgl-popup');
+      if (activeMarker === marker) {
+        marker.style.backgroundImage = `url('<%= asset_path("LOCALISATION/Pin.svg") %>')`;
+        activeMarker = null;
+      }
+      if (popupElement) {
+        popupElement.classList.remove('show');
+      }
+    });
+
+  new mapboxgl.Marker(el)
+    .setLngLat([longitude, latitude])
+    .setPopup(popup)
+    .addTo(map);
+
+  el.addEventListener('mouseenter', function () {
+    marker.classList.add('heartbeat');
+  });
+  el.addEventListener('mouseleave', function () {
+    marker.classList.remove('heartbeat');
+  });
+}
+
+function initializeMap() {
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZ2Fsb3U5NzEiLCJhIjoiY2x4YWp6MHZiMDRrNjJqczg5d3Y1enRrMSJ9.Z8AB8DAk-kC3B2PByScoSg';
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/galou971/clxaik4yc023501pc51smdg9v',
+    center: [0, 20],
+    zoom: 1
+  });
+  map.addControl(new mapboxgl.NavigationControl());
+
+  const restaurantsFr = <%= raw @restaurants_fr.map { |r| r.attributes.merge(image_url: asset_path("LOCALISATION/RESTAURANT/#{r.image_list}")) }.to_json %>;
+  const restaurantsBl = <%= raw @restaurants_bl.map { |r| r.attributes.merge(image_url: asset_path("LOCALISATION/RESTAURANT/#{r.image_list}")) }.to_json %>;
+
+  restaurantsFr.forEach(restaurant => {
+    createMarker(
+      map,
+      restaurant.name,
+      restaurant.image_url,
+      restaurant.longitude,
+      restaurant.latitude,
+      restaurant.address,
+      restaurant.phone_number,
+      restaurant.zip
+    );
+  });
+
+  restaurantsBl.forEach(restaurant => {
+    createMarker(
+      map,
+      restaurant.name,
+      restaurant.image_url,
+      restaurant.longitude,
+      restaurant.latitude,
+      restaurant.address,
+      restaurant.phone_number,
+      restaurant.zip
+    );
+  });
+
+  let rotateDegrees = 0;
+  let rotationSpeed = 10;
+  const rotateMap = () => {
+    rotateDegrees += rotationSpeed;
+    map.rotateTo(rotateDegrees, { duration: 100 });
+    if (rotationSpeed > 0.1) {
+      rotationSpeed *= 0.95;
+    }
+  };
+  const rotationInterval = setInterval(rotateMap, 100);
+  setTimeout(() => {
+    clearInterval(rotationInterval);
+    map.flyTo({
+      center: [2.826918, 46.823304],
+      zoom: 4.95,
+      bearing: 0,
+      speed: 0.7,
+      curve: 1.5,
+      easing: (t) => t,
+      essential: true
+    });
+  }, 2000);
+}
+
+</script>
+</body>
+</html>

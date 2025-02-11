@@ -1,0 +1,11 @@
+/log
+/tmp
+*.log
+*.md
+node_modules
+spec/
+test/
+app/assets/images/DESSERT/
+app/assets/images/DRINK/
+app/assets/images/SIDE/
+app/assets/images/BAOBURGER/BURGER

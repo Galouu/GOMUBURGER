@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #76e7ff, #ae2cf1);
+      margin: 0;
+      padding: 0;
+      color: #333333;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 24px;
+      color: #333333;
+      text-align: center;
+    }
+    p {
+      font-size: 16px;
+      color: #555555;
+    }
+    .question {
+      font-weight: bold;
+      color: #333333;
+    }
+    .answer {
+      margin-bottom: 20px;
+      color: #555555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Nouvelle candidature pour une Franchise GOMU</h1><br>
+    <p><span class="question">As-tu déjà mangé chez GOMU ?</span> <span class="answer"><%= @form_data[:gomu] %></span></p>
+    <p><span class="question">Quel est ton Baoger préféré ?</span> <span class="answer"><%= @form_data[:baoger] %></span></p>
+    <p><span class="question">Qu'as-tu pensé de ton expérience gustative chez nous ?</span> <span class="answer"><%= @form_data[:experience] %></span></p>
+    <p><span class="question">Si non, pourquoi n’as-tu toujours pas goûté ?</span> <span class="answer"><%= @form_data[:question4] %></span></p>
+    <p><span class="question">De quel grande oeuvre est inspiré notre nom ?</span> <span class="answer"><%= @form_data[:question5] %></span></p>
+    <p><span class="question">Quel est notre code couleur ?</span> <span class="answer"><%= @form_data[:question6] %></span></p>
+    <p><span class="question">Quel est notre slogan ?</span> <span class="answer"><%= @form_data[:question7] %></span></p>
+    <p><span class="question">Nom :</span> <span class="answer"><%= @form_data[:question8] %></span></p>
+    <p><span class="question">Prénom :</span> <span class="answer"><%= @form_data[:question9] %></span></p>
+    <p><span class="question">Âge :</span> <span class="answer"><%= @form_data[:question10] %></span></p>
+    <p><span class="question">Nationalité :</span> <span class="answer"><%= @form_data[:question11] %></span></p>
+    <p><span class="question">Adresse :</span> <span class="answer"><%= @form_data[:question12] %></span></p>
+    <p><span class="question">Numéro de téléphone :</span> <span class="answer"><%= @form_data[:question13] %></span></p>
+    <p><span class="question">Adresse mail :</span> <span class="answer"><%= @form_data[:question14] %></span></p>
+    <p><span class="question">Régime matrimonial :</span> <span class="answer"><%= @form_data[:question15] %></span></p>
+    <p><span class="question">Es-tu propriétaire ?</span> <span class="answer"><%= @form_data[:gomu1] %></span></p>
+    <p><span class="question">Que fais-tu dans la vie ?</span> <span class="answer"><%= @form_data[:question16] %></span></p>
+    <p><span class="question">Pourquoi veux-tu ouvrir un GOMU ?</span> <span class="answer"><%= @form_data[:question17] %></span></p>
+    <p><span class="question">Disposes-tu d'un local ?</span> <span class="answer"><%= @form_data[:gomu2] %></span></p>
+    <p><span class="question">Je dispose d'un local :</span> <span class="answer"><%= @form_data[:question18] %></span></p>
+    <p><span class="question">Je ne dispose pas de local, mais je souhaite m'implanter à/au :</span> <span class="answer"><%= @form_data[:question19] %></span></p>
+    <p><span class="question">Situation financière :</span> <span class="answer"><%= @form_data[:question20] %></span></p>
+    <p><span class="question">Mode de financement :</span> <span class="answer"><%= @form_data[:question21] %></span></p>
+    <p><span class="question">Solo ou en équipe :</span> <span class="answer"><%= @form_data[:question22] %></span></p>
+    <p><span class="question">Qualités :</span> <span class="answer"><%= @form_data[:question23] %></span></p>
+    <p><span class="question">Défauts :</span> <span class="answer"><%= @form_data[:question24] %></span></p>
+    <p><span class="question">Conditions pour réussir au sein de GOMU :</span> <span class="answer"><%= @form_data[:question25] %></span></p>
+    <p><span class="question">Temps disponible pour le projet de franchise :</span> <span class="answer"><%= @form_data[:question26] %></span></p>
+    <p><span class="question">Mes rêves :</span> <span class="answer"><%= @form_data[:question27] %></span></p>
+    <p><span class="question">Autres éléments à rajouter :</span> <span class="answer"><%= @form_data[:question28] %></span></p>
+    <p><span class="question">Adhérez-vous à cet élément du positionnement du concept GOMU © ?</span> <span class="answer"><%= @form_data[:question29] %></span></p><br><br>
+    <p><span class="question">Je soussigné(e) <span class="answer"><%= @form_data[:question9] %> <%= @form_data[:question8] %></span> certifie que les informations contenues dans le présent document sont exactes.</span></p>
+    <p><span class="question">Fait à <span class="answer"><%= @form_data[:question12] %></span></span></p>
+    <p><span class="question">Le <span class="answer"><%= Time.now.strftime("%d/%m/%Y") %></span></span></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+//= link_tree ../images
+//= link_directory ../stylesheets .css
+//= link_tree ../../javascript .js
+//= link_tree ../../../vendor/javascript .js
+//= link popper.js
+//= link bootstrap.min.js
+//= link ThisIsTheFuture/This_Is_The_Future.ttf
+//= link ThisIsTheFuture/This_Is_The_Future.otf
+//= link ThisIsTheFuture/This_Is_The_Future.eot
+//= link ThisIsTheFuture/This_Is_The_Future.woff
+//= link ThisIsTheFuture/This_Is_The_Future.woff2
+//= link ThisIsTheFuture/This_Is_The_Future.svg

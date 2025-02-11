@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= @bowl.name %> - Détail du bowl</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Danfo:ELSH@80&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2f2e7b2411.js" crossorigin="anonymous"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: url('<%= asset_path("BAOBURGER/BACKGROUNDSHOW/#{@bowl.image_url}") %>') center/cover no-repeat;
+            color: white;
+        }
+
+        .bowl-detail {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            height: 85vh;
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 35%;
+            margin-left: 8%;
+            margin-bottom: 13%;
+            position: relative;
+        }
+
+        .bowl-navigation {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 7%;
+        }
+
+        .bowl-navigation a {
+            font-size: 30px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .bowl-title img {
+            width: 100%;
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
+        .bowl-info {
+            border-radius: 15px;
+            padding: 10px;
+            margin-top: 20px;
+            min-height: 150px;
+        }
+
+        .tab-buttons {
+            font-family: 'GomuBold', Arial, sans-serif;
+            display: flex;
+            gap: 0;
+            font-size: 1.6rem;
+            overflow: hidden;
+        }
+
+        .tab-buttons button {
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .tab-buttons .active {
+            color: #6623FF;
+        }
+
+        .tab-buttons:hover {
+            color: #e163f2;
+        }
+
+        .info-content {
+            border-radius: 0 0 15px 15px;
+            padding: 20px;
+        }
+
+        .ingredients-list, .allergens-list {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .fade-in {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .ingredients-list .ingredient-item, .allergens-list .allergen-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            text-align: center;
+        }
+
+        .ingredients-list .ingredient-item.visible, .allergens-list .allergen-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .ingredients-list .circle, .allergens-list .circle {
+            background-color: white;
+            color: black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 55px;
+            width: 55px;
+            margin: auto;
+        }
+
+        .ingredients-list i, .allergens-list i {
+            font-size: 24px;
+        }
+
+        .ingredient-name, .allergen-name {
+            font-family: "Jura", sans-serif;
+            margin-top: 4px;
+            font-size: 14px;
+            color: white;
+            position: relative;
+            z-index: 10;
+            letter-spacing: -1px;
+        }
+
+        .close-container {
+          position: absolute;
+          top: 27.5%;
+          right: 5%;
+          width: 50px;
+          height: 50px;
+          cursor: pointer;
+        }
+
+        .leftright,
+        .rightleft {
+          height: 4px;
+          width: 50px;
+          position: absolute;
+          margin-top: 24px;
+          background-color:rgb(255, 255, 255);
+          border-radius: 2px;
+          transform: rotate(45deg);
+          transition: all 0.3s ease-in;
+        }
+
+        .rightleft {
+          transform: rotate(-45deg);
+        }
+
+        label.close {
+          color: white;
+          font-family: 'GomuBold';
+          font-size: 0.8em;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          opacity: 0;
+          transition: all 0.3s ease-in;
+          position: absolute;
+          top: 60px;
+          left: 5px;
+        }
+
+        .close-container:hover .leftright {
+          transform: rotate(-45deg);
+          background-color: #6623FF;
+        }
+
+        .close-container:hover .rightleft {
+          transform: rotate(45deg);
+          background-color: #6623FF;
+        }
+
+        .close-container:hover label {
+          opacity: 1;
+        }
+
+        .bowl-image {
+            width: 45%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 5%;
+        }
+
+        .bowl-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            width: 80%;
+        }
+
+        .class {
+            font-size: 1em;
+            margin-top: 3.5em;
+            font-family: "Jura", sans-serif;
+            letter-spacing: 4px;
+        }
+
+        @keyframes fadeRise {
+          from {
+              opacity: 0;
+              transform: translateY(20px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+        }
+
+        .fade-rise {
+            opacity: 0;
+            animation: fadeRise 1s ease-in-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @media (max-width: 1023px) {
+            body, html {
+                background: none;
+                background-color: black;
+            }
+
+            .bowl-detail {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+            }
+
+            .content-section {
+                width: 90%;
+                margin-left: 0;
+                margin-bottom: 10%;
+                text-align: center;
+            }
+
+            .bowl-navigation {
+                margin-top: 8%;
+            }
+
+            .bowl-navigation a {
+                font-size: 20px;
+            }
+
+            .bowl-title img {
+                width: 65%;
+                margin: 0 auto;
+            }
+
+            .class {
+                font-size: 0.8em;
+                margin-top: 1em;
+                line-height: 1em;
+                padding: 0 5%;
+            }
+
+            .bowl-info {
+                padding: 10px;
+                margin-top: 10px;
+                min-height: 100px;
+            }
+
+            .tab-buttons {
+                font-size: 1.5rem;
+            }
+
+            .ingredients-list, .allergens-list {
+                gap: 14px;
+            }
+
+            .ingredients-list .circle, .allergens-list .circle {
+                height: 55px;
+                width: 55px;
+            }
+
+            .ingredient-name, .allergen-name {
+                font-size: 12px;
+            }
+
+            .close-container {
+                top: 13%;
+                right: 20px;
+            }
+
+            .fa-lg {
+                font-size: 1.5em;
+            }
+
+            .mobile-only {
+                display: block;
+                width: 60%;
+                margin: 0 auto;
+            }
+
+            .class {
+                font-size: 1em;
+                margin-top: 0em;
+                line-height: 1em;
+                letter-spacing: 3px;
+            }
+
+            .bowl-image {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body, html {
+                background: none;
+                background-color: black;
+            }
+
+            .bowl-detail {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+            }
+
+            .content-section {
+                width: 90%;
+                margin-left: 0;
+                margin-bottom: 10%;
+                text-align: center;
+            }
+
+            .bowl-navigation {
+                margin-top: 8%;
+            }
+
+            .bowl-navigation a {
+                font-size: 20px;
+            }
+
+            .bowl-title img {
+                width: 75%;
+                margin: 0 auto;
+            }
+
+            .class {
+                font-size: 0.8em;
+                margin-top: 1em;
+                line-height: 1em;
+                padding: 0 5%;
+            }
+
+            .bowl-info {
+                padding: 10px;
+                margin-top: 10px;
+                min-height: 100px;
+            }
+
+            .tab-buttons {
+                font-size: 1.2rem;
+            }
+
+            .ingredients-list, .allergens-list {
+                gap: 14px;
+            }
+
+            .ingredients-list .circle, .allergens-list .circle {
+                height: 45px;
+                width: 45px;
+            }
+
+            .ingredient-name, .allergen-name {
+                font-size: 12px;
+            }
+
+            .close-container {
+                top: 13%;
+                right: 20px;
+            }
+
+            .fa-lg {
+                font-size: 1.5em;
+            }
+
+            .mobile-only {
+                display: block;
+                width: 75%;
+                margin: 0 auto;
+            }
+
+            .class {
+                font-size: 1em;
+                margin-top: 0em;
+                line-height: 1em;
+                letter-spacing: 3px;
+            }
+
+            .bowl-image {
+                display: none;
+            }
+        }
+
+        @media (max-width: 375px) {
+            body, html {
+                background: none;
+                background-color: black;
+            }
+
+            .bowl-detail {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+            }
+
+            .content-section {
+                width: 90%;
+                margin-left: 0;
+                margin-bottom: 10%;
+                text-align: center;
+            }
+
+            .bowl-navigation {
+                margin-top: 8%;
+            }
+
+            .bowl-navigation a {
+                font-size: 20px;
+            }
+
+            .bowl-title img {
+                width: 75%;
+                margin: 0 auto;
+            }
+
+            .class {
+                font-size: 0.8em;
+                margin-top: 1em;
+                line-height: 1em;
+                padding: 0 5%;
+            }
+
+            .bowl-info {
+                padding: 10px;
+                margin-top: 10px;
+                min-height: 100px;
+            }
+
+            .tab-buttons {
+                font-size: 1.2rem;
+            }
+
+            .ingredients-list, .allergens-list {
+                gap: 10px;
+            }
+
+            .ingredients-list .circle, .allergens-list .circle {
+                height: 40px;
+                width: 40px;
+            }
+
+            .ingredient-name, .allergen-name {
+                font-size: 12px;
+            }
+
+            .close-container {
+                top: 13%;
+                right: 20px;
+            }
+
+            .fa-lg {
+                font-size: 1.5em;
+            }
+
+            .mobile-only {
+                display: block;
+                width: 75%;
+                margin: 0 auto;
+            }
+
+            .class {
+                font-size: 0.8em;
+                margin-top: 0em;
+                line-height: 1em;
+                letter-spacing: 3px;
+            }
+
+            .bowl-image {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bowl-detail">
+
+        <div class="content-section">
+
+            <div class="bowl-navigation">
+                <a href="<%= previous_bowl_path(id: @bowl.id) %>" class="bowl-prev">
+                    <i class="fa-solid fa-angles-left fa-lg" style="color: #ffffff;"></i>
+                </a>
+                <div class="bowl-title">
+                    <%= image_tag asset_path("BAOBURGER/TITLE/#{@bowl.title}"), class: "title-burger" %>
+                </div>
+                <a href="<%= next_bowl_path(id: @bowl.id) %>" class="bowl-next">
+                    <i class="fa-solid fa-angles-right fa-lg" style="color: #ffffff;"></i>
+                </a>
+            </div>
+
+            <img src="<%= asset_path("BOWL/#{@bowl.image}") %>" alt="Image mobile" class="mobile-only">
+
+            <h2 class="class fade-rise">
+                <%= @bowl.description_show.gsub("\n", "<br>").html_safe %>
+            </h2>
+
+            <div class="bowl-info">
+                <div class="tab-buttons">
+                    <button class="active" onclick="showTab('ingredients')">INGRÉDIENTS</button>
+                    <button onclick="showTab('allergens')">ALLERGÈNES</button>
+                </div>
+
+                <div class="info-content">
+                    <div id="ingredients" class="ingredients-list fade-in">
+                        <% @bowl.ingredients.each_with_index do |ingredient, index| %>
+                            <% parsed_ingredient = eval(ingredient) %>
+                            <div class="ingredient-item" style="transition-delay: <%= index * 0.2 %>s;">
+                                <div class="circle">
+                                    <i class="<%= parsed_ingredient["icon"].html_safe %>"></i>
+                                </div>
+                                <span class="ingredient-name"><%= parsed_ingredient["name"] %></span>
+                            </div>
+                        <% end %>
+                    </div>
+
+                    <div id="allergens" class="allergens-list">
+                        <% @bowl.allergens.each_with_index do |allergen, index| %>
+                            <% parsed_allergen = eval(allergen) %>
+                            <div class="allergen-item" style="transition-delay: <%= index * 0.2 %>s;">
+                                <div class="circle">
+                                    <i class="<%= parsed_allergen["icon"].html_safe %>"></i>
+                                </div>
+                                <span class="allergen-name"><%= parsed_allergen["name"] %></span>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="close-container" onclick="handleCloseClick()">
+                <div class="leftright"></div>
+                <div class="rightleft"></div>
+                <label class="close">Retour</label>
+            </div>
+        </div>
+
+        <% if @bowl.display_image %>
+          <div class="bowl-image">
+              <img src="<%= asset_path("BOWL/#{@bowl.image}") %>" alt="<%= @bowl.name %>">
+          </div>
+        <% end %>
+
+    </div>
+
+    <script>
+        function handleCloseClick() {
+
+            window.location.href = "/menu";
+        }
+
+        function showItemsGradually(items) {
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, index * 200);
+            });
+        }
+
+        function showTab(tab) {
+            const ingredientsList = document.getElementById('ingredients');
+            const allergensList = document.getElementById('allergens');
+
+            ingredientsList.style.display = 'none';
+            allergensList.style.display = 'none';
+
+            ingredientsList.classList.remove('fade-in');
+            allergensList.classList.remove('fade-in');
+
+            document.querySelectorAll('.ingredient-item').forEach(item => item.classList.remove('visible'));
+            document.querySelectorAll('.allergen-item').forEach(item => item.classList.remove('visible'));
+
+            setTimeout(() => {
+                if (tab === 'ingredients') {
+                    ingredientsList.style.display = 'flex';
+                    ingredientsList.classList.add('fade-in');
+                    showItemsGradually(document.querySelectorAll('.ingredient-item'));
+                } else {
+                    allergensList.style.display = 'flex';
+                    allergensList.classList.add('fade-in');
+                    showItemsGradually(document.querySelectorAll('.allergen-item'));
+                }
+            }, 100);
+
+            document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.tab-buttons button[onclick="showTab('${tab}')"]`).classList.add('active');
+        }
+
+        setTimeout(() => {
+            const activeTab = document.querySelector('.tab-buttons .active').textContent.toLowerCase();
+            showTab(activeTab === 'ingrédients' ? 'ingredients' : 'allergens');
+        }, 500);
+    </script>
+</body>
+</html>

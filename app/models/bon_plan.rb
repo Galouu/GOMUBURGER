@@ -1,0 +1,2 @@
+class BonPlan < ApplicationRecord
+end

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar</title>
+  <style>
+    @font-face {
+      font-family: 'GomuRegular';
+      src: url('Gomu-Regular.otf') format('opentype');
+    }
+
+    .container-fluid {
+      font-family: 'GomuBold' !important;
+      letter-spacing: 1px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10%;
+      position: relative;
+    }
+    .navbar {
+      background-color: transparent !important;
+      transition: top 0.9s;
+      height: 15vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0;
+    }
+    .nav-link {
+      font-family: 'GomuBold' !important;
+      font-weight: normal;
+      color: #ffffff !important;
+      transition: transform 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #e163f2 !important;
+      transform: scale(1.1);
+    }
+    .nav-link.active {
+      color: #6623FF !important;
+      background-color: transparent !important;
+    }
+    .nav-item {
+      margin: 0 10px;
+    }
+    .left-nav, .right-nav {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    .left-nav {
+      justify-content: flex-end;
+      margin-right: 4.375rem;
+    }
+    .right-nav {
+      justify-content: flex-start;
+      margin-left: 4.375rem;
+    }
+    .navbar-brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .navbar-brand img {
+      transition: transform 0.3s ease;
+    }
+    .navbar-brand img:hover {
+      transform: scale(1.1);
+    }
+    .responsive-logo {
+      height: 80px;
+    }
+    @media (max-width: 768px) {
+      .left-nav, .right-nav {
+        display: none;
+      }
+      .navbar-brand {
+        position: relative;
+        left: auto;
+        transform: none;
+      }
+      .collapse {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .collapse .navbar-nav {
+        flex-direction: column;
+      }
+    }
+    @media (max-width: 375px) {
+      .responsive-logo {
+        height: 60px;
+      }
+    }
+
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="<%= root_path %>">
+        <img src="<%= asset_path('LOGO/gomu-logowhite.webp') %>" alt="Logo" class="responsive-logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="left-nav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "CONCEPT", "#", class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "LOCALISATION", localisation_path, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+        <div class="right-nav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "MENU", menu_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "DEVENIR FRANCHISÉ", franchise_path, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function setActiveLink() {
+      const currentPath = window.location.pathname;
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    setActiveLink();
+    window.addEventListener('popstate', setActiveLink);
+    document.querySelectorAll('.navbar a').forEach(link => {
+      link.addEventListener('click', function() {
+        setTimeout(setActiveLink, 100);
+      });
+    });
+  </script>
+</body>
+</html>

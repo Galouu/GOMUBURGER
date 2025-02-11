@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEVENIR FRANCHISÉ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+#batiments {
+  position: absolute;
+  top: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+#batiments img {
+  max-width: 100%;
+}
+
+    .navbar {
+      z-index: 10;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .fullscreen-background {
+      background-image: url('<%= asset_path "FRANCHISE/background-franchisee-1920.png" %>');
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -3;
+    }
+
+    .parallax-element {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      transition: all 0.5s ease-out;
+    }
+
+    #png1 {
+      z-index: 2;
+      top: 10%;
+    }
+    #png1 img {
+      max-width: 70%;
+    }
+
+    #png2 {
+      z-index: 1;
+      top: -15%;
+    }
+    #png2 img {
+      max-width: 90%;
+    }
+
+    #png3 {
+      z-index: 1;
+      top: 73%;
+      left: 20%;
+    }
+    #png3 img {
+      max-width: 70%;
+    }
+
+    #png4 {
+      z-index: 4;
+      top: 194%;
+      opacity: 0.9;
+    }
+    #png4 img {
+      max-width: 65%;
+    }
+
+    #png5 {
+      z-index: 1;
+      top: 16%;
+      left: 32%;
+    }
+    #png5 img {
+      max-width: 35%;
+    }
+
+    #png6 {
+      z-index: 2;
+      top: 0%;
+      left: -35%;
+    }
+    #png6 img {
+      max-width: 35%;
+    }
+
+    #png7 {
+      position: absolute;
+      top: 60%;
+      left: -35%;
+      z-index: 2;
+    }
+    #png7 img {
+      max-width: 50%;
+    }
+
+    .section-title {
+      top: 3vh;
+      font-family: "Montserrat", sans-serif;
+      font-size: 8.5vh;
+      background-color: black;
+      color: #ffffff;
+      text-align: center;
+      z-index: 5;
+      position: relative;
+      margin-bottom: 0;
+    }
+
+    .text-box {
+      color: #fff;
+      padding: 20px;
+      width: 30%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: start;
+      z-index: 6;
+    }
+
+    @media (max-width: 768px) {
+      #png2 img {
+        max-width: 160%;
+      }
+      #png1 img {
+        max-width: 100%;
+      }
+      #png2 {
+        top: -4%;
+      }
+      #png1 {
+        top: -10%;
+      }
+      .text-box {
+        width: 70%;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #png2 img {
+        max-width: 180%;
+      }
+      #png1 img {
+        max-width: 100%;
+      }
+      #png2 {
+        top: -14%;
+      }
+      #png1 {
+        top: -12%;
+      }
+      .text-box {
+        width: 90%;
+        margin: 10px auto;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="fullscreen-background"></div>
+
+  <div class="parallax-element" id="png1">
+    <img src="<%= asset_path 'FRANCHISE/title-franchisee.png' %>" alt="Title">
+  </div>
+
+  <div class="parallax-element" id="png2">
+    <img src="<%= asset_path 'FRANCHISE/moon-franchisee.png' %>" alt="Moon">
+  </div>
+
+  <div class="parallax-element" id="png3">
+    <img src="<%= asset_path 'FRANCHISE/CLOUD_01.png' %>" alt="Cloud 1">
+  </div>
+
+  <div class="parallax-element" id="png4">
+    <img src="<%= asset_path 'FRANCHISE/bigmiddle-screen.png' %>" alt="Big Screen">
+  </div>
+
+  <div class="parallax-element" id="png5">
+    <img src="<%= asset_path 'FRANCHISE/CLOUD_02.png' %>" alt="Cloud 2">
+  </div>
+
+  <div class="parallax-element" id="png6">
+    <img src="<%= asset_path 'FRANCHISE/CLOUD_03.png' %>" alt="Cloud 3">
+  </div>
+
+  <div class="parallax-element" id="png7">
+    <img src="<%= asset_path 'FRANCHISE/CLOUD_01.png' %>" alt="Cloud 4">
+  </div>
+<div class="parallax-element" id="batiments">
+  <img src="<%= asset_path 'FRANCHISE/Batiments_2.png' %>" alt="Bâtiments">
+</div>
+
+<script>
+document.addEventListener('turbo:load', function () {
+    const moon    = document.getElementById('png2');e
+    const cloud1  = document.getElementById('png3');
+    const cloud2  = document.getElementById('png5');
+    const cloud3  = document.getElementById('png6');
+    const cloud4  = document.getElementById('png7');
+
+    const initialPositions = {
+        moon: moon.offsetTop,
+        png3: cloud1.offsetLeft,
+        png5: cloud2.offsetLeft,
+        png6: cloud3.offsetLeft,
+        png7: cloud4.offsetLeft
+    };
+
+    function updatePositions() {
+        const scrollPos = window.pageYOffset;
+
+        moon.style.top = (initialPositions.moon + scrollPos * 0.8) + "px";
+
+        cloud1.style.left = (initialPositions.png3 + scrollPos * 0.75) + "px";
+        cloud2.style.left = (initialPositions.png5 - scrollPos * 0.85) + "px";
+        cloud3.style.left = (initialPositions.png6 + scrollPos * 0.95) + "px";
+        cloud4.style.left = (initialPositions.png7 - scrollPos * 0.65) + "px";
+    }
+
+    window.addEventListener('scroll', updatePositions);
+
+    updatePositions();
+});
+</script>
+
+
+
+</body>
+</html>

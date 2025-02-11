@@ -1,0 +1,2 @@
+class Bowl < ApplicationRecord
+end
