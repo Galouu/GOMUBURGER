@@ -130,9 +130,10 @@ Burger.create(
   description_show: "Dans les légendes, seuls les plus puissants peuvent prétendre à ce titre : <br>
   Le Yonko. <br><br>
   Double steak smashé, cheddar fondant, oignons caramélisés et sauces mayo gomu et barbecue en parfaite symbiose.",
-  image_url: "BACKGROUND_YONKO.png",
+  image_url: "YONKO_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737550694/YONKO_ucuxyy.png",
   category: "boeuf",
+  display_image: "true",
   allergens: [
     { "name" => "Gluten", "icon" => "fa-solid fa-wheat" },
     { "name" => "Œuf", "icon" => "fa-sharp fa-solid fa-egg-fried" },
@@ -434,7 +435,7 @@ puts "Création de nos meilleurs Boissons 🍺"
 
 Drink.create(
   name: "Exotic",
-  title: "EXOTIC_TITLE.png",
+  title: "EXOTIC_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -446,7 +447,7 @@ Drink.create(
 )
 Drink.create(
   name: "Blue Lantern",
-  title: "BLUE_LANTERN_TITLE.png",
+  title: "BLUE_LANTERN_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -458,7 +459,7 @@ Drink.create(
 )
 Drink.create(
   name: "Litchi Love",
-  title: "LITCHI_LOVE_TITLE.png",
+  title: "LITCHIE_LOVE_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -534,7 +535,7 @@ puts "Création de nos meilleurs Side 🍟"
 
 Side.create(
   name: "Frites Crinkles",
-  title: "FRITES_TITLE.png",
+  title: "FRITES_CRINKLES_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -545,7 +546,7 @@ Side.create(
 )
 Side.create(
   name: "Frites Patates Douces",
-  title: "FRITES_PATATE_DOUCE_TITLE.png",
+  title: "FRITES_PATATE_DOUCE_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -556,7 +557,7 @@ Side.create(
 )
 Side.create(
   name: "Frites Cheddar Bacon",
-  title: "FRITES_CHEDDAR_BACON_TITLE.png",
+  title: "FRITES_CHEDDAR_BACON_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -573,7 +574,7 @@ Side.create(
 )
 Side.create(
   name: "Frites Mix",
-  title: "FRITES_MIX_TITLE.png",
+  title: "FRITES_MIX_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -584,7 +585,7 @@ Side.create(
 )
 Side.create(
   name: "Frites Cheddar",
-  title: "FRITES_CHEDDAR_TITLE.png",
+  title: "FRITES_CHEDDAR_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -605,7 +606,7 @@ puts "Création de nos meilleurs Dessert 🍦"
 
 Dessert.create(
   name: "Mochi",
-  title: "TITRE_MOCHI_GLACE.png",
+  title: "MOCHI_GLACE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -641,7 +642,7 @@ Dessert.create(
 )
 Dessert.create(
   name: "Cheesecake Matcha",
-  title: "TITRE_CHEESCAKE_MATCHA.png",
+  title: "CHEESCAKE_MATCHA_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -660,7 +661,7 @@ Dessert.create(
 )
 Dessert.create(
   name: "Perle du Japon",
-  title: "TITRE_PERLE_DU_JAPON.png",
+  title: "PERLE_DU_JAPON_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -675,7 +676,7 @@ Dessert.create(
 )
 Dessert.create(
   name: "Pecan pie",
-  title: "TITRE_PECAN_PIE.png",
+  title: "TARTE_PECAN_TITRE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
@@ -692,7 +693,7 @@ Dessert.create(
 )
 Dessert.create(
   name: "Bao Nutella",
-  title: "TITRE_BAO_NUTELLA.png",
+  title: "TITRE_BAO_NUTELA.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
