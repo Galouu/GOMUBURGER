@@ -24,7 +24,7 @@ Burger.create(
     { "name" => "Pain Bao", "icon" => "fa-solid fa-burger"},
     { "name" => "Steak", "icon" => "fa-solid fa-steak" },
     { "name" => "Emmental", "icon" => "fa-solid fa-cheese-swiss" },
-    { "name" => "Œuf", "icon" => "fa-sharp fa-solid fa-egg-fried" },
+    # { "name" => "Œuf", "icon" => "fa-sharp fa-solid fa-egg-fried" },
     { "name" => "Salade", "icon" => "fa-sharp fa-solid fa-leafy-green" },
     { "name" => "Tomate", "icon" => "fa-solid fa-tomato" },
     { "name" => "Oignons blanc", "icon" => "fa-solid fa-onion" },
@@ -55,7 +55,7 @@ Burger.create(
     { "name" => "Pain Bao", "icon" => "fa-solid fa-burger"},
     { "name" => "Poulet pané", "icon" => "fa-solid fa-drumstick" },
     { "name" => "Emmental", "icon" => "fa-solid fa-cheese-swiss" },
-    { "name" => "Œuf", "icon" => "fa-sharp fa-solid fa-egg-fried" },
+    # { "name" => "Œuf", "icon" => "fa-sharp fa-solid fa-egg-fried" },
     { "name" => "Salade", "icon" => "fa-sharp fa-solid fa-leafy-green" },
     { "name" => "Tomate", "icon" => "fa-solid fa-tomato" },
     { "name" => "Oignons blanc", "icon" => "fa-solid fa-onion" },
@@ -209,7 +209,7 @@ Burger.create(
     { "name" => "Salade", "icon" => "fa-sharp fa-solid fa-leafy-green" },
     { "name" => "Tomate", "icon" => "fa-solid fa-tomato" },
     { "name" => "Oignons rouge", "icon" => "fa-solid fa-onion" },
-    { "name" => "Sauce mayo aigre-douce", "icon" => "fa-duotone fa-solid fa-jar" }
+    { "name" => "Mayo aigre-douce", "icon" => "fa-duotone fa-solid fa-jar" }
   ]
 )
 Burger.create(
@@ -400,7 +400,7 @@ Starter.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "GYOZA.png",
   display_image: "true",
   allergens: [
@@ -418,7 +418,7 @@ Starter.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "DYNAMITE.png",
   display_image: "true",
   allergens: [
@@ -440,7 +440,7 @@ Drink.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551635/MOEXOTIC_zgoxz7.png",
   display_image: "true",
   category: "mocktail"
@@ -452,7 +452,7 @@ Drink.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551633/MBLUELANTERN_tiutly.png",
   display_image: "true",
   category: "mocktail"
@@ -464,19 +464,19 @@ Drink.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551637/LITCHILOVE_jh5j9r.png",
   display_image: "true",
   category: "mocktail"
 )
 Drink.create(
   name: "Litchi",
-  title: "LITCHI_TITLE.png",
+  title: "LITCHIE_BBT.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551631/BBT_LITCHI_zixmwv.png",
   display_image: "true",
   category: "bubble"
@@ -488,7 +488,7 @@ Drink.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551634/BBT_MANGUE_kbofzb.png",
   display_image: "true",
   category: "bubble"
@@ -500,19 +500,19 @@ Drink.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551636/BBT_PASSION_z1rhyv.png",
   display_image: "true",
   category: "bubble"
 )
 Drink.create(
   name: "Litchi",
-  title: "LITCHI_TITLE.png",
+  title: "LITCHIE_SODA.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551630/LIMOLITCHI_b0pgxj.png",
   display_image: "true",
   category: "limonade"
@@ -524,7 +524,7 @@ Drink.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551631/LIMOPASSION_qrkwtj.png",
   display_image: "true",
   category: "limonade"
@@ -540,7 +540,7 @@ Side.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   display_image: "true",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551320/FRITE_wspeqd.png"
 )
@@ -551,7 +551,7 @@ Side.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   display_image: "true",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551319/FRITEPATATEDOUCE_xn51he.png"
 )
@@ -562,7 +562,7 @@ Side.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551320/FRITECHEDDARBACON_dybfmk.png",
   display_image: "true",
   allergens: [
@@ -579,7 +579,7 @@ Side.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   display_image: "true",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551320/FRITEMIX_jp7abv.png"
 )
@@ -590,7 +590,7 @@ Side.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551321/FRITECHEDDAR_k0ull6.png",
   display_image: "true",
   allergens: [
@@ -611,7 +611,7 @@ Dessert.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551606/MOCHI_ck63oi.png",
   display_image: "true",
   allergens: [
@@ -628,7 +628,7 @@ Dessert.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551604/YUZU_qzlhnu.png",
   display_image: "true",
   allergens: [
@@ -647,7 +647,7 @@ Dessert.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551602/MACHA_d4r95d.png",
   display_image: "true",
   allergens: [
@@ -666,7 +666,7 @@ Dessert.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551602/PERLE_jky97h.png",
   display_image: "true",
   allergens: [
@@ -681,7 +681,7 @@ Dessert.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551605/PECAN_rd0ejo.png",
   display_image: "true",
   allergens: [
@@ -698,7 +698,7 @@ Dessert.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "AMERICAN_BULGOGI_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "https://res.cloudinary.com/db0lftgol/image/upload/v1737551603/BAONUTELLA_huaxw1.png",
   display_image: "true",
   allergens: [
@@ -717,12 +717,12 @@ puts "Création de nos meilleurs Bowl 🍜"
 
 Bowl.create(
   name: "Bulgogi",
-  title: "BULGOGI_TITLE2.png",
+  title: "BULGOGI_TITLE.png",
   description: "Quand la Corée s'invite dans ton bao.",
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "CHEETOS_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "BOWLSBULGOGI.png",
   display_image: "true",
   allergens: [
@@ -739,7 +739,7 @@ Bowl.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "CHEETOS_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "BOWLSCHICKEN.png",
   display_image: "true",
   allergens: [
@@ -755,7 +755,7 @@ Bowl.create(
   description_show: "1967, la Corée du Sud et les U.S.A font la plus grande des découvertes sur la Lune :
   L’American Bulgogi. <br><br>
   L’alliance parfaite entre le somptueux du Bulgogi et l’explosif du Bacon.",
-  image_url: "CHEETOS_BACKGROUND.png",
+  image_url: "MENU_BACKGROUND.png",
   image: "SCO.png",
   display_image: "true",
   allergens: [

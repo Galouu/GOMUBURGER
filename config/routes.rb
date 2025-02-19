@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get '/franchise', to: 'franchise#franchise'
   get 'localisation', to: 'localisations#index', as: 'localisation'
   post 'submit_form', to: 'forms#submit'
+  get 'concepts', to: 'concepts#index'
 
   get '/restaurants/:name', to: 'restaurants#show', as: 'restaurant_show'
 
