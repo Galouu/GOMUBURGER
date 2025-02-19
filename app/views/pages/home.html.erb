@@ -1,23 +1,18 @@
+<%# ----- Génération des 3 suites ----- %>
+<% baogers_suite_frames = (1..97).map { |i| asset_path("HOMEPAGE/SUITEBAOGER/BAOGERSUITE#{i}.webp") } %>
+<% soif_suite_frames    = (1..97).map { |i| asset_path("HOMEPAGE/SUITEBAOGER/SOIFSUITE#{i}.webp") } %>
+<% starters_suite_frames = (1..89).map { |i| asset_path("HOMEPAGE/SUITEBAOGER/STARTERSUITE#{i}.webp") } %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HOME</title>
-
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <!-- Google Fonts -->
+  <title>Accueil - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,700;1,700&display=swap"
-    rel="stylesheet"
-  />
-
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
   <style>
     @font-face {
       font-family: "ThisIsTheFuture";
@@ -62,7 +57,6 @@
       padding: 10px !important;
     }
 
-    /* Chaque section prend toute la hauteur */
     section {
       scroll-snap-align: start;
       height: 100vh;
@@ -74,7 +68,6 @@
       width: 100%;
     }
 
-    /* Carrousel plein écran */
     #carouselExampleFade {
       width: 100%;
       height: 100%;
@@ -87,10 +80,9 @@
     .carousel-inner img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Remplir sans déformer */
+      object-fit: cover;
     }
 
-    /* SECTION DES SPÉCIALITÉS */
     .special-section {
       width: 100%;
       text-align: center;
@@ -181,14 +173,13 @@
       margin-top: 0.5em;
     }
 
-    /* SECTION NEW */
     .new-section {
       position: relative;
       height: 100vh;
-      background-color: #2e2057; /* Couleur de fond par défaut */
+      background-color: #2e2057;
       overflow: hidden;
     }
-    /* Background principal */
+
     .main-background {
       position: absolute;
       top: 0;
@@ -196,19 +187,20 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0; /* Couche la plus basse */
+      z-index: 0;
     }
-    /* Rectangles d'arrière-plan */
+
     .background-rect {
       position: absolute;
-      width: 40%; /* Ajuste la taille selon le besoin */
+      width: 40%;
       height: auto;
       z-index: 1;
-      transform-origin: center; /* Définit le point autour duquel la rotation se produit */
-      transition: transform 0.3s ease; /* Animation de la transition */
-      border: 3px solid transparent; /* Bordure de base transparente */
-      border-image: linear-gradient(135deg, #ff007f, #3e21de) 1; /* Dégradé linéaire */
+      transform-origin: center;
+      transition: transform 0.3s ease;
+      border: 3px solid transparent;
+      border-image: linear-gradient(135deg, #ff007f, #3e21de) 1;
     }
+
     .bg-rect-1 {
       top: 20%;
       left: 0%;
@@ -216,37 +208,38 @@
       transform: rotate(-10deg);
       z-index: 3;
     }
+
     .bg-rect-2 {
       bottom: 16%;
       right: -2%;
       width: 18%;
       transform: rotate(6deg);
     }
-    /* Contenu principal */
+
     .content {
       position: relative;
-      z-index: 2; /* Devant le fond et les rectangles */
+      z-index: 2;
       width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    /* Image centrale */
+
     .center-image {
       max-width: 50%;
       height: auto;
-      z-index: 5; /* Au-dessus des rectangles */
+      z-index: 5;
     }
-    /* Images dans les coins */
+
     .corner-image {
       position: absolute;
-      width: 15%; /* Taille ajustée */
-      height: auto; /* Au-dessus des rectangles et du fond */
+      width: 15%;
+      height: auto;
     }
     .top-left {
-      top: 0%; /* Ajustement vertical */
-      left: 1%; /* Ajustement horizontal */
+      top: 0%;
+      left: 1%;
       width: 30%;
       animation: float-horizontal 4s ease-in-out infinite;
     }
@@ -277,7 +270,7 @@
       width: 25%;
       animation: float-horizontal 4s ease-in-out infinite;
     }
-    /* Animation de flottement vertical (haut et bas) */
+
     @keyframes float-vertical {
       0%,
       100% {
@@ -287,7 +280,7 @@
         transform: translateY(-10px);
       }
     }
-    /* Animation de flottement horizontal (droite et gauche) */
+
     @keyframes float-horizontal {
       0%,
       100% {
@@ -297,62 +290,61 @@
         transform: translateX(-10px);
       }
     }
-    /* Style du bouton "NOTRE CONCEPT" */
+
     .btn-concept {
-      position: relative; /* Position par rapport à son conteneur parent */
-      margin-top: 40px; /* Plus d'espace sous l'image centrale */
-      padding: 15px 30px; /* Taille du bouton */
-      background-color: #ff007f; /* Couleur de fond */
-      color: white; /* Couleur du texte */
-      font-family: "ThisIsTheFuture", sans-serif; /* Police personnalisée */
-      font-size: 1.5rem; /* Taille du texte */
+      position: relative;
+      margin-top: 40px;
+      padding: 15px 30px;
+      background-color: #ff007f;
+      color: white;
+      font-family: "ThisIsTheFuture", sans-serif;
+      font-size: 1.5rem;
       text-align: center;
-      text-decoration: none; /* Supprime le soulignement */
-      border-radius: 10px; /* Coins arrondis */
-      letter-spacing: 1px; /* Espacement des lettres */
-      cursor: pointer; /* Curseur de la souris */
-      transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animation au survol */
+      text-decoration: none;
+      border-radius: 10px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 10;
-      display: inline-block; /* Nécessaire pour centrer avec flexbox */
-      animation: simulate-click 1.5s infinite ease-in-out; /* Animation du bouton */
+      display: inline-block;
+      animation: simulate-click 1.5s infinite ease-in-out;
     }
     .btn-concept:hover {
-      text-decoration: none; /* Empêche le soulignement au survol */
+      text-decoration: none;
     }
-    /* Centrer le bouton sous l'image centrale */
+
     .content {
       display: flex;
-      flex-direction: column; /* Arrange les éléments en colonne */
-      align-items: center; /* Centre horizontalement */
-      justify-content: center; /* Centre verticalement */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    /* Animation de clic simulé */
+
     @keyframes simulate-click {
       0% {
-        transform: scale(1); /* Taille normale */
-        box-shadow: 0 8px 25px rgba(255, 0, 127, 0.8); /* Ombre plus large */
+        transform: scale(1);
+        box-shadow: 0 8px 25px rgba(255, 0, 127, 0.8);
       }
       50% {
-        transform: scale(0.95); /* Légère réduction de taille */
-        box-shadow: 0 4px 20px rgba(255, 0, 127, 0.6); /* Ombre réduite */
+        transform: scale(0.95);
+        box-shadow: 0 4px 20px rgba(255, 0, 127, 0.6);
       }
       100% {
-        transform: scale(1); /* Retour à la taille normale */
-        box-shadow: 0 8px 25px rgba(255, 0, 127, 0.8); /* Retour de l'ombre */
+        transform: scale(1);
+        box-shadow: 0 8px 25px rgba(255, 0, 127, 0.8);
       }
     }
 
-    /* SECTION FRANCHISE */
     .franchise-section {
       position: relative;
-      height: 100vh; /* Prend toute la hauteur de l'écran */
+      height: 100vh;
       display: flex;
-      align-items: center; /* Centre le contenu verticalement */
-      justify-content: center; /* Centre le contenu horizontalement */
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
-      background-color: #2e2057; /* Couleur de fond par défaut */
+      background-color: #2e2057;
     }
-    /* Background principal */
+
     .franchise-section .background {
       position: absolute;
       top: 0;
@@ -360,7 +352,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0; /* En arrière-plan */
+      z-index: 0;
     }
     .franchise-section .background video {
       position: absolute;
@@ -368,16 +360,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ajuste la vidéo pour couvrir toute la section */
-      z-index: 0; /* Assure que la vidéo est derrière le contenu */
+      object-fit: cover;
+      z-index: 0;
     }
-    /* Contenu principal */
+
     .franchise-section .content {
       position: relative;
-      z-index: 1; /* Au-dessus du background */
+      z-index: 1;
       text-align: center;
     }
-    /* Texte "DEVIENS FRANCHISÉ" */
+
     .franchise-section .section-title {
       font-family: "ThisIsTheFuture", sans-serif;
       font-size: 3rem;
@@ -386,55 +378,55 @@
       text-transform: uppercase;
       letter-spacing: 2px;
     }
-    /* Vidéo centrale */
+
     .franchise-section .center-video {
-      position: absolute; /* Permet de positionner précisément la vidéo */
-      bottom: 0; /* Place la vidéo au bas de la section */
-      left: 50%; /* Centre la vidéo horizontalement */
-      transform: translateX(-50%); /* Centre la vidéo parfaitement */
-      width: 40%; /* Ajuste la taille de la vidéo */
-      height: auto; /* Maintient les proportions */
-      border-radius: 15px; /* Coins arrondis */
-      object-fit: cover; /* Assure que la vidéo garde ses proportions */
-      border-radius: 15px; /* Coins arrondis */
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40%;
+      height: auto;
+      border-radius: 15px;
+      object-fit: cover;
+      border-radius: 15px;
     }
 
-    /* Container des cards */
+
     .special-section .col-md-4 {
       position: relative;
       text-align: center;
-      overflow: visible; /* Permet aux titres de dépasser si nécessaire */
-      transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transition fluide */
-      will-change: transform, box-shadow; /* Prépare le navigateur pour éviter les latences */
+      overflow: visible;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      will-change: transform, box-shadow;
     }
     .special-section .col-md-4:hover {
-      transform: scale(1.01); /* Zoom léger sur toute la card */
-      box-shadow: 0 4px 12px rgba(0, 0, 255, 0.2); /* Ombre douce */
+      transform: scale(1.01);
+      box-shadow: 0 4px 12px rgba(0, 0, 255, 0.2);
     }
-    /* Titres des cards */
+
     .special-section .col-md-4 img:first-of-type {
-      position: absolute; /* Fixe les titres au-dessus des images */
-      top: -90px; /* Ajustez cette valeur pour placer les titres correctement */
+      position: absolute;
+      top: -90px;
       left: 50%;
-      transform: translateX(-50%); /* Respecte la position initiale */
-      z-index: 2; /* Assure que les titres restent au-dessus des images */
-      animation: none; /* Pas d'animation par défaut */
+      transform: translateX(-50%);
+      z-index: 2;
+      animation: none;
     }
-    /* Bounce continu sur le titre */
+
     .special-section .col-md-4:hover img:first-of-type {
-      animation: bounce-continuous 0.8s ease infinite; /* Bounce continu */
+      animation: bounce-continuous 0.8s ease infinite;
     }
-    /* Images des cards */
+
     .special-section .col-md-4 img.rounded-images {
       position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation au hover */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       z-index: 1;
     }
-    /* Hover Zoom sur les images */
+
     .special-section .col-md-4:hover img.rounded-images {
-      transform: scale(1.01); /* Zoom léger sur l'image */
+      transform: scale(1.01);
     }
-    /* Gradient néon autour des images */
+
     .special-section .col-md-4 img.rounded-images::before {
       content: "";
       position: absolute;
@@ -447,21 +439,20 @@
         rgba(0, 0, 255, 0.2),
         rgba(255, 0, 255, 0.2)
       );
-      opacity: 0; /* Par défaut, le gradient est invisible */
-      transition: opacity 0.3s ease; /* Transition fluide */
+      opacity: 0;
+      transition: opacity 0.3s ease;
       z-index: -1;
     }
     .special-section .col-md-4:hover img.rounded-images::before {
-      opacity: 1; /* Affiche le gradient au hover */
+      opacity: 1;
     }
-    /* Keyframes pour le bounce (titre uniquement) */
     @keyframes bounce-continuous {
       0%,
       100% {
-        transform: translate(-50%, 0); /* Position initiale */
+        transform: translate(-50%, 0);
       }
       50% {
-        transform: translate(-50%, -5px); /* Déplacement vertical léger */
+        transform: translate(-50%, -5px);
       }
     }
 
@@ -478,7 +469,7 @@
       margin-top: 40px;
       font-size: 1.5rem;
       font-weight: 600;
-      font-family: "ThisIsTheFuture", sans-serif; /* Ajout de la nouvelle police */
+      font-family: "ThisIsTheFuture", sans-serif;
       border: none;
       outline: none;
       position: relative;
@@ -501,7 +492,7 @@
       border-radius: 40%;
       transform: translateY(50%);
       transition: transform 0.4s ease-in, border-radius 0.5s ease;
-      z-index: 0; /* Ensure hover effect stays behind the text */
+      z-index: 0
     }
     .button:not(.simple)::after {
       background: var(--hover-front);
@@ -526,7 +517,7 @@
       --name: move-out;
     }
     .button div {
-      z-index: 1; /* Ensure text stays visible above hover effects */
+      z-index: 1;
       position: relative;
       display: flex;
       justify-content: center;
@@ -534,8 +525,8 @@
     }
     .button div span {
       display: inline-block;
-      backface-visibility: hidden; /* Prevent text disappearing during animations */
-      transform: translateZ(0); /* Fix rendering issues */
+      backface-visibility: hidden;
+      transform: translateZ(0);
     }
 
     .second-section {
@@ -543,7 +534,7 @@
       justify-content: space-between;
       align-items: center;
       height: 100vh;
-      background-color: #000; /* Fond noir */
+      background-color: #000;
       color: #fff;
       padding: 0 5%;
     }
@@ -556,8 +547,8 @@
     .promo-video {
       border-radius: 36px;
       margin-top: 10%;
-      width: 55%;
-      transform: rotate(-3deg); /* Inclinaison de la vidéo */
+      width: 55%
+      transform: rotate(-3deg);
     }
     .right-content {
       flex: 1;
@@ -569,16 +560,16 @@
       gap: 20px;
     }
     .game-text img {
-      width: 100%; /* Ajustez selon la taille désirée */
-      animation: floater 3s ease-in-out infinite; /* Animation de flottement */
+      width: 100%;
+      animation: floater 3s ease-in-out infinite;
     }
     @keyframes floater {
       0%,
       100% {
-        transform: translateY(0); /* Position initiale */
+        transform: translateY(0);
       }
       50% {
-        transform: translateY(-10px); /* Déplace l'image vers le haut */
+        transform: translateY(-10px);
       }
     }
     .social-stats {
@@ -622,7 +613,7 @@
         no-repeat center center;
       background-size: cover;
     }
-    /* Animation pour bounce */
+
     @keyframes bounce {
       0%,
       100% {
@@ -635,7 +626,6 @@
   </style>
 </head>
 <body>
-  <!-- SECTION CAROUSEL PLEIN ÉCRAN -->
   <section>
     <div
       id="carouselExampleFade"
@@ -644,22 +634,18 @@
       data-bs-interval="2000"
     >
       <div class="carousel-inner">
-        <!-- SLIDE 1 -->
         <div class="carousel-item active">
           <picture>
-            <!-- Image mobile -->
             <source
               srcset="<%= asset_path 'HOMEPAGE/CAROUSEL/Banniere_Waffle_mobile.png' %>"
               media="(max-width: 767px)"
             />
-            <!-- Image desktop (fallback) -->
             <img
               src="<%= asset_path 'HOMEPAGE/CAROUSEL/Banniere_Waffle.png' %>"
               alt="Waffle Banner"
             />
           </picture>
         </div>
-        <!-- SLIDE 2 -->
         <div class="carousel-item">
           <picture>
             <source
@@ -672,7 +658,6 @@
             />
           </picture>
         </div>
-        <!-- SLIDE 3 -->
         <div class="carousel-item">
           <picture>
             <source
@@ -685,7 +670,6 @@
             />
           </picture>
         </div>
-        <!-- SLIDE 4 -->
         <div class="carousel-item">
           <picture>
             <source
@@ -698,7 +682,6 @@
             />
           </picture>
         </div>
-        <!-- SLIDE 5 -->
         <div class="carousel-item">
           <picture>
             <source
@@ -711,7 +694,6 @@
             />
           </picture>
         </div>
-        <!-- SLIDE 6 -->
         <div class="carousel-item">
           <picture>
             <source
@@ -724,7 +706,6 @@
             />
           </picture>
         </div>
-        <!-- SLIDE 7 -->
         <div class="carousel-item">
           <picture>
             <source
@@ -738,7 +719,6 @@
           </picture>
         </div>
       </div>
-      <!-- Contrôles gauche/droite -->
       <button
         class="carousel-control-prev"
         type="button"
@@ -759,8 +739,6 @@
       </button>
     </div>
   </section>
-
-  <!-- SECTION SPECIAL -->
   <section class="special-section">
     <video autoplay loop muted>
       <source src="<%= asset_path 'FRANCHISE/franchiseF-bg.webm' %>" type="video/webm" />
@@ -772,10 +750,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <img
-              src="<%= asset_path 'HOMEPAGE/STARTERS-title.png' %>"
-              alt="Titre Les Starters"
-            />
+  <img
+    id="starters-title"
+    src="<%= starters_suite_frames.first %>"
+    alt="Titre Les Starters"
+  />
             <img
               src="<%= asset_path 'HOMEPAGE/start.png' %>"
               class="rounded-images"
@@ -784,10 +763,11 @@
             <p>Il était une faim.</p>
           </div>
           <div class="col-md-4">
-            <img
-              src="<%= asset_path 'HOMEPAGE/BAOGERS-title.png' %>"
-              alt="Titre Nos Baogers"
-            />
+  <img
+    id="baogers-title"
+    src="<%= baogers_suite_frames.first %>"
+    alt="Titre Nos Baogers"
+  />
             <img
               src="<%= asset_path 'HOMEPAGE/bao.png' %>"
               class="rounded-images"
@@ -796,10 +776,11 @@
             <p>Le Bao, c’est nous.</p>
           </div>
           <div class="col-md-4">
-            <img
-              src="<%= asset_path 'HOMEPAGE/SOIF.png' %>"
-              alt="Titre T'as Soif?"
-            />
+<img
+  id="soif-title"
+  src="<%= soif_suite_frames.first %>"
+  alt="Titre T'as Soif?"
+/>
             <img
               src="<%= asset_path 'HOMEPAGE/bbt.png' %>"
               class="rounded-images"
@@ -812,8 +793,6 @@
       <button class="button alternative">NOTRE MENU</button>
     </div>
   </section>
-
-  <!-- SECTION SECOND (ex: MASHUP) -->
   <section class="second-section custom-background">
     <div class="left-content">
       <video autoplay muted loop class="promo-video">
@@ -954,7 +933,7 @@
         }
       });
     });
-    
+
   fetch("/concepts")
     .then(response => {
       if (!response.ok) {
@@ -968,11 +947,43 @@
         const img = document.createElement("img");
         img.src = image.secure_url;
         img.alt = "Texte central";
-        // Tu peux ajouter des classes supplémentaires si nécessaire
         container.appendChild(img);
       });
     })
     .catch(error => console.error("Erreur lors du chargement des images Cloudinary:", error));
+  // BAOGERS
+  const baogersFrames = <%= baogers_suite_frames.to_json.html_safe %>;
+  let baogersIndex = 0;
+  const baogersTitleImg = document.getElementById("baogers-title");
+
+  function showNextBaogers() {
+    baogersIndex = (baogersIndex + 1) % baogersFrames.length;
+    baogersTitleImg.src = baogersFrames[baogersIndex];
+  }
+  setInterval(showNextBaogers, 50);
+
+  // SOIF
+  const soifFrames = <%= soif_suite_frames.to_json.html_safe %>;
+  let soifIndex = 0;
+  const soifTitleImg = document.getElementById("soif-title");
+
+  function showNextSoif() {
+    soifIndex = (soifIndex + 1) % soifFrames.length;
+    soifTitleImg.src = soifFrames[soifIndex];
+  }
+  setInterval(showNextSoif, 50);
+
+  // STARTERS
+  const startersFrames = <%= starters_suite_frames.to_json.html_safe %>;
+  let startersIndex = 0;
+  const startersTitleImg = document.getElementById("starters-title");
+
+  function showNextStarter() {
+    startersIndex = (startersIndex + 1) % startersFrames.length;
+    startersTitleImg.src = startersFrames[startersIndex];
+  }
+  setInterval(showNextStarter, 50);
+
   </script>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
