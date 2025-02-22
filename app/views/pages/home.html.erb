@@ -2,6 +2,7 @@
 <% baogers_suite_frames = (1..97).map { |i| asset_path("HOMEPAGE/SUITEBAOGER/BAOGERSUITE#{i}.webp") } %>
 <% soif_suite_frames    = (1..97).map { |i| asset_path("HOMEPAGE/SUITEBAOGER/SOIFSUITE#{i}.webp") } %>
 <% starters_suite_frames = (1..89).map { |i| asset_path("HOMEPAGE/SUITEBAOGER/STARTERSUITE#{i}.webp") } %>
+<% concept_suite_frames = (1..109).map { |i| asset_path("HOMEPAGE/SUITEBAOGER/CONCEPTSUITE#{i}.webp") } %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -846,7 +847,14 @@
     </video>
 
     <div class="content">
-<div id="concept-suite" class="center-image"></div>
+<div id="concept-suite" class="center-image">
+  <!-- Votre <img> pour la suite "CONCEPTSUITE" -->
+  <img
+    id="concept-suite-img"
+    src="<%= concept_suite_frames.first %>"
+    alt="Titre Concept"
+  />
+</div>
 
       <button class="button alternative">NOTRE CONCEPT</button>
 
@@ -933,24 +941,6 @@
         }
       });
     });
-
-  fetch("/concepts")
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Erreur dans la récupération des images");
-      }
-      return response.json();
-    })
-    .then(images => {
-      const container = document.getElementById("concept-suite");
-      images.forEach(image => {
-        const img = document.createElement("img");
-        img.src = image.secure_url;
-        img.alt = "Texte central";
-        container.appendChild(img);
-      });
-    })
-    .catch(error => console.error("Erreur lors du chargement des images Cloudinary:", error));
   // BAOGERS
   const baogersFrames = <%= baogers_suite_frames.to_json.html_safe %>;
   let baogersIndex = 0;
@@ -984,6 +974,15 @@
   }
   setInterval(showNextStarter, 50);
 
+  const conceptFrames = <%= concept_suite_frames.to_json.html_safe %>;
+  let conceptIndex = 0;
+  const conceptImg = document.getElementById("concept-suite-img");
+
+  function showNextConceptFrame() {
+    conceptIndex = (conceptIndex + 1) % conceptFrames.length;
+    conceptImg.src = conceptFrames[conceptIndex];
+  }
+  setInterval(showNextConceptFrame, 50);
   </script>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
